@@ -10,9 +10,9 @@
 #import "SeriouslyJSON.h"
 #import "SeriouslyResponse.h"
 
-#define KVO_SET(_key_, _value_) [self willChangeValueForKey:@"_key_"]; \
-_#_key_ = (_value_); \
-[self didChangeValueForKey:@"_key_"]; 
+#define KVO_SET(_key_, _value_) [self willChangeValueForKey:@#_key_]; \
+_##_key_ = (_value_); \
+[self didChangeValueForKey:@#_key_]; 
 
 
 @interface SeriouslyOperation (Private)
@@ -67,11 +67,8 @@ _#_key_ = (_value_); \
         [self performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:NO];
         return;
     }
-	NSLog(@"START");
-    
-	[self willChangeValueForKey:@"isExecuting"];
-    _isExecuting = YES;
-    [self didChangeValueForKey:@"isExecuting"];
+
+    KVO_SET(isExecuting, YES);
 	
     _connection = [[NSURLConnection alloc] initWithRequest:_urlRequest delegate:self];
     [_connection start];
@@ -79,12 +76,13 @@ _#_key_ = (_value_); \
 }
 
 - (void)cancel {
-    _isCanceled = YES;
-    [_connection cancel];
-	
-    _isFinished = YES;
-    _isExecuting = NO;
+    KVO_SET(isCanceled, YES);
+    KVO_SET(isFinished, YES);
+    KVO_SET(isExecuting, NO);
+
+    [_connection cancel];	
     [super cancel];
+    
     [self autorelease];
 }
 
@@ -94,13 +92,11 @@ _#_key_ = (_value_); \
     SeriouslyResponse *response = [[SeriouslyResponse alloc] initWithResponse:_response];
     response.rawBody = _data;
     response.body = [self parsedData];
-
-	KVO_SET(isExecuting, NO)
-	KVO_SET(isFinished, NO)	
 	
+    KVO_SET(isExecuting, NO)
+	KVO_SET(isFinished, YES)
+    
     _handler(response, _error);
-	
-	NSLog(@"DONE");
     	
     [self autorelease];
 }
