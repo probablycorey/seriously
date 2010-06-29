@@ -131,7 +131,7 @@ static yajl_callbacks callbacks = {
 }
 
 - (id)init {
-    self = [super self];
+    self = [super init];
     _stack = [[NSMutableArray alloc] init];
     return self;
 }

@@ -24,7 +24,7 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
     
     NSURLRequestCachePolicy cachePolicy = NSURLRequestUseProtocolCachePolicy;
     NSTimeInterval timeout = 60;    
-    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:nil cachePolicy:cachePolicy timeoutInterval:timeout];    
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:nil cachePolicy:cachePolicy timeoutInterval:timeout];    
     
     [urlRequest setHTTPMethod:[[options objectForKey:kSeriouslyMethod] uppercaseString]];
     [urlRequest setTimeoutInterval:[[options objectForKey:kSeriouslyTimeout] doubleValue]];

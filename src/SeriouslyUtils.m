@@ -49,7 +49,7 @@
         (CFStringRef)@":/?=,!$&'()*+;[]@#",
         CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
 
-    return (NSString *)escaped;
+    return [(NSString *)escaped autorelease];
 }
 
 @end
