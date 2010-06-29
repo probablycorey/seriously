@@ -1,0 +1,32 @@
+Simple Example 
+--------------
+
+    NSArray *urls = [NSArray arrayWithObjects:
+                     @"http://farm5.static.flickr.com/4138/4744205956_1f08ae40e3_o.jpg",
+                     @"http://farm5.static.flickr.com/4123/4744238252_d11d0df5a3_b.jpg",
+                     @"http://farm5.static.flickr.com/4097/4743596319_50cce97d80_o.jpg",
+                     @"http://farm5.static.flickr.com/4099/4743581287_7c50529b36_o.jpg",
+                     @"http://farm5.static.flickr.com/4123/4743587437_78f0906e8a_o.jpg",
+                     @"http://farm5.static.flickr.com/4136/4743562971_d5f5c6d5b1_o.jpg",
+                     @"http://farm5.static.flickr.com/4073/4744205142_be44e64ab7_o.jpg",
+                     nil];
+
+    for (NSString *url in urls) {
+        SeriouslyOperation *o = [Seriously request:url options:nil handler:^(SeriouslyResponse *response, NSError *error) {            
+            NSLog(@"got %d (%@)", [urls indexOfObject:url], url);
+        }];
+    }
+    
+Parse JSON 
+----------
+    NSString *url = @"http://api.twitter.com/1/users/show.json?screen_name=probablycorey";
+
+    [Seriously get:url handler:^(SeriouslyResponse *response, NSError *error) {
+        if (error) {
+            NSLog(@"Got error %@", error);
+        }
+        else {
+            NSLog(@"Look, JSON gets parsed into an dictionary");
+            NSLog(@"%@", [response.body objectForKey:@"profile_background_image_url"]);
+        }
+    }];
