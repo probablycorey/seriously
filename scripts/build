@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SDK_VERSION=4.0
+
+xcodebuild -configuration Release -target "Seriously" -sdk iphoneos$SDK_VERSION
+xcodebuild -configuration Release -target "Seriously" -sdk iphonesimulator$SDK_VERSION
