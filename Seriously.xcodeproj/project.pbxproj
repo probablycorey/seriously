@@ -34,6 +34,8 @@
 		87E24AEE11D952E600B9C33B /* SeriouslyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E24AD311D952E600B9C33B /* SeriouslyOperation.m */; };
 		87E24B5511D9566500B9C33B /* SeriouslyResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E24B5311D9566500B9C33B /* SeriouslyResponse.h */; };
 		87E24B5611D9566500B9C33B /* SeriouslyResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E24B5411D9566500B9C33B /* SeriouslyResponse.m */; };
+		87E5E0DD11DA75D100D334D5 /* SeriouslyUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E5E0DB11DA75D100D334D5 /* SeriouslyUtils.h */; };
+		87E5E0DE11DA75D100D334D5 /* SeriouslyUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E5E0DC11DA75D100D334D5 /* SeriouslyUtils.m */; };
 		AA747D9F0F9514B9006C5449 /* Seriously_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* Seriously_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +68,9 @@
 		87E24AD311D952E600B9C33B /* SeriouslyOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriouslyOperation.m; sourceTree = "<group>"; };
 		87E24B5311D9566500B9C33B /* SeriouslyResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeriouslyResponse.h; sourceTree = "<group>"; };
 		87E24B5411D9566500B9C33B /* SeriouslyResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriouslyResponse.m; sourceTree = "<group>"; };
+		87E24DFA11DA6B9C00B9C33B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		87E5E0DB11DA75D100D334D5 /* SeriouslyUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeriouslyUtils.h; sourceTree = "<group>"; };
+		87E5E0DC11DA75D100D334D5 /* SeriouslyUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriouslyUtils.m; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* Seriously_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Seriously_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libSeriously.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSeriously.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				D2AAC07E0554694100DB518D /* libSeriously.a */,
+				87E24DFA11DA6B9C00B9C33B /* Info.plist */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,6 +134,8 @@
 				87E24B5411D9566500B9C33B /* SeriouslyResponse.m */,
 				87E24AD211D952E600B9C33B /* SeriouslyOperation.h */,
 				87E24AD311D952E600B9C33B /* SeriouslyOperation.m */,
+				87E5E0DB11DA75D100D334D5 /* SeriouslyUtils.h */,
+				87E5E0DC11DA75D100D334D5 /* SeriouslyUtils.m */,
 			);
 			name = Classes;
 			path = src;
@@ -201,6 +209,7 @@
 				87E24AEB11D952E600B9C33B /* Seriously.h in Headers */,
 				87E24AED11D952E600B9C33B /* SeriouslyOperation.h in Headers */,
 				87E24B5511D9566500B9C33B /* SeriouslyResponse.h in Headers */,
+				87E5E0DD11DA75D100D334D5 /* SeriouslyUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +267,7 @@
 				87E24AEC11D952E600B9C33B /* Seriously.m in Sources */,
 				87E24AEE11D952E600B9C33B /* SeriouslyOperation.m in Sources */,
 				87E24B5611D9566500B9C33B /* SeriouslyResponse.m in Sources */,
+				87E5E0DE11DA75D100D334D5 /* SeriouslyUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +280,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 0.1;
 				DSTROOT = /tmp/Seriously.dst;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -288,6 +299,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CURRENT_PROJECT_VERSION = 0.1;
 				DSTROOT = /tmp/Seriously.dst;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -306,9 +318,11 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -319,9 +333,11 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
 				OTHER_LDFLAGS = "-ObjC";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};

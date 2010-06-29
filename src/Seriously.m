@@ -8,6 +8,7 @@
 
 #import "Seriously.h"
 #import "SeriouslyOperation.h"
+#import "SeriouslyUtils.h"
 
 const NSString *kSeriouslyMethod = @"kSeriouslyMethod";
 const NSString *kSeriouslyTimeout = @"kSeriouslyTimeout";
@@ -18,18 +19,27 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 @implementation Seriously
 
 + (SeriouslyOperation *)request:(id)url options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler {
-    if ([url isKindOfClass:[NSString class]]) url = [NSURL URLWithString:url];
-    
     NSMutableDictionary *options = [self options];
     [options addEntriesFromDictionary:userOptions];
     
     NSURLRequestCachePolicy cachePolicy = NSURLRequestUseProtocolCachePolicy;
     NSTimeInterval timeout = 60;    
-    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:cachePolicy timeoutInterval:timeout];
+    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:nil cachePolicy:cachePolicy timeoutInterval:timeout];    
+    
     [urlRequest setHTTPMethod:[[options objectForKey:kSeriouslyMethod] uppercaseString]];
     [urlRequest setTimeoutInterval:[[options objectForKey:kSeriouslyTimeout] doubleValue]];
     [urlRequest setAllHTTPHeaderFields:[options objectForKey:kSeriouslyHeaders]];
-    [urlRequest setHTTPBody:[options objectForKey:kSeriouslyBody]];
+
+    if ([[urlRequest HTTPMethod] isEqual:@"POST"] || [[urlRequest HTTPMethod] isEqual:@"PUT"]) {
+        url = [SeriouslyUtils url:url params:nil];
+        [urlRequest setHTTPBody:[options objectForKey:kSeriouslyBody]];
+    }
+    else {
+        url = [SeriouslyUtils url:url params:[options objectForKey:kSeriouslyBody]];
+    }
+    
+    [urlRequest setURL:url];
+
     SeriouslyProgressHandler progressHandler = [options objectForKey:kSeriouslyProgressHandler];
     
     SeriouslyOperation *operation = [SeriouslyOperation operationWithRequest:urlRequest handler:handler progressHandler:progressHandler];
@@ -52,7 +62,7 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
     
     if (!operationQueue) {
         operationQueue = [[NSOperationQueue alloc] init]; 
-        operationQueue.maxConcurrentOperationCount = 1;
+        operationQueue.maxConcurrentOperationCount = 3;
     }
     
     return operationQueue;
