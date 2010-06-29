@@ -19,23 +19,15 @@
     
     NSURLRequest *_urlRequest;
     
-    BOOL _finished;
-    BOOL _executing;
-    BOOL _canceled;    
+    BOOL _isFinished;
+    BOOL _isExecuting;
+    BOOL _isCanceled;    
 }
 
-@property (getter=isFinished) BOOL finished;
-@property (getter=isExecuting) BOOL executing;
-@property (getter=isCanceled) BOOL canceled;
+@property () BOOL isFinished;
+@property () BOOL isExecuting;
+@property () BOOL isCanceled;
 
 + (id)operationWithRequest:(NSURLRequest *)urlRequest handler:(SeriouslyHandler)handler progressHandler:(SeriouslyProgressHandler)progressHandler;
-
-- (BOOL)isCanceled;
-- (void)setCanceled:(BOOL)value;
-- (BOOL)isExecuting;
-- (void)setExecuting:(BOOL)value;
-- (BOOL)isFinished;
-- (void)setFinished:(BOOL)value;
-
 
 @end

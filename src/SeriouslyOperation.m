@@ -10,6 +10,11 @@
 #import "SeriouslyJSON.h"
 #import "SeriouslyResponse.h"
 
+#define KVO_SET(_key_, _value_) [self willChangeValueForKey:@"_key_"]; \
+_#_key_ = (_value_); \
+[self didChangeValueForKey:@"_key_"]; 
+
+
 @interface SeriouslyOperation (Private)
 
 - (id)initWithRequest:(NSURLRequest *)urlRequest handler:(SeriouslyHandler)handler progressHandler:(SeriouslyProgressHandler)progressHandler;
@@ -19,6 +24,10 @@
 
 
 @implementation SeriouslyOperation
+
+@synthesize isFinished = _isFinished;
+@synthesize isExecuting = _isExecuting;
+@synthesize isCanceled = _isCanceled; 
 
 - (void)dealloc {
     [_connection release];
@@ -42,9 +51,9 @@
     _progressHandler = [progressHandler copy];
     _data = [[NSMutableData alloc] init];
     
-    _finished = NO;
-    _canceled = NO;
-    _executing = NO;
+    _isFinished = NO;
+    _isCanceled = NO;
+    _isExecuting = NO;
     
     _urlRequest = [urlRequest retain];
     
@@ -52,40 +61,47 @@
 }
 
 - (void)start {
-    if (self.isCanceled || self.isFinished) return;
+    if (_isCanceled || _isFinished) return;
 
     if (![NSThread isMainThread]) {
         [self performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:NO];
         return;
     }
+	NSLog(@"START");
     
-    self.executing = YES;    
+	[self willChangeValueForKey:@"isExecuting"];
+    _isExecuting = YES;
+    [self didChangeValueForKey:@"isExecuting"];
+	
     _connection = [[NSURLConnection alloc] initWithRequest:_urlRequest delegate:self];
     [_connection start];
 
 }
 
 - (void)cancel {
-    self.canceled = YES;
+    _isCanceled = YES;
     [_connection cancel];
-    
-    self.finished = YES;
-    self.executing = NO;
+	
+    _isFinished = YES;
+    _isExecuting = NO;
     [super cancel];
     [self autorelease];
 }
 
 - (void)sendHandler:(NSURLConnection *)connection {
-    if (self.isCanceled) [NSException raise:@"Seriously error" format:@"OH NO, THE URL CONNECTION WAS CANCELED BUT NOT CAUGHT"];
+    if (_isCanceled) [NSException raise:@"Seriously error" format:@"OH NO, THE URL CONNECTION WAS CANCELED BUT NOT CAUGHT"];
     
     SeriouslyResponse *response = [[SeriouslyResponse alloc] initWithResponse:_response];
     response.rawBody = _data;
     response.body = [self parsedData];
 
+	KVO_SET(isExecuting, NO)
+	KVO_SET(isFinished, NO)	
+	
     _handler(response, _error);
-    
-    self.finished = YES;
-    self.executing = NO;
+	
+	NSLog(@"DONE");
+    	
     [self autorelease];
 }
 
@@ -140,7 +156,7 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    if (!self.isCanceled) {
+    if (!_isCanceled) {
         _error = [error retain];
         [_data release];
         _data = nil;
@@ -149,16 +165,7 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {    
-    if (!self.isCanceled) [self sendHandler:connection];
+    if (!_isCanceled) [self sendHandler:connection];
 }
-
-- (BOOL)isCanceled { return _canceled; }
-- (void)setCanceled:(BOOL)value { _canceled = value; }
-
-- (BOOL)isExecuting { return _executing; }
-- (void)setExecuting:(BOOL)value { NSLog(@"NO"); _executing = value; }
-
-- (BOOL)isFinished { return _finished; }
-- (void)setFinished:(BOOL)value { _finished = value; }
 
 @end
