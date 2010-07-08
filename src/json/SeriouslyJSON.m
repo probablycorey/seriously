@@ -119,9 +119,9 @@ static yajl_callbacks callbacks = {
 @implementation SeriouslyJSON
 
 - (void)dealloc {
-    [_root release];
+    [_currentObject release];
     [_stack release];
-    [_key release];
+    [_keys release];
     [super dealloc];
 }
 
@@ -133,6 +133,7 @@ static yajl_callbacks callbacks = {
 - (id)init {
     self = [super init];
     _stack = [[NSMutableArray alloc] init];
+    _keys = [[NSMutableArray alloc] init];    
     return self;
 }
 
@@ -145,6 +146,7 @@ static yajl_callbacks callbacks = {
     hand = yajl_alloc(&callbacks, &cfg, NULL, self);
     yajl_bs_init(state, &(hand->alloc));
     yajl_bs_push(state, state_begin);
+    NSLog(@"%d", yajl_bs_current(state));
 
     unsigned char *input = (unsigned char *)[string UTF8String];
     unsigned int length = [string lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
@@ -167,7 +169,7 @@ static yajl_callbacks callbacks = {
         yajl_free(hand);
     }
     
-    return _root;
+    return _currentObject;
 }
 
 - (void)pushDictionary {
@@ -175,8 +177,7 @@ static yajl_callbacks callbacks = {
 }
 
 - (void)pushDictionaryKey:(NSString *)key {
-    [_key release];
-    _key = [key retain];
+    [_keys addObject:key];
 }
 
 - (void)pushArray {
@@ -184,13 +185,16 @@ static yajl_callbacks callbacks = {
 }
 
 - (void)pop {
-    [_root release];
-    _root = [[_stack lastObject] retain];
+    [_currentObject release];
+    _currentObject = [[_stack lastObject] retain];
     [_stack removeLastObject];
+    
+    if (_stack.count > 0) push_hash_or_array(self, _currentObject);
 }
 
 - (void)addDictionaryObject:(id)object {
-    if (object) [[_stack lastObject] setObject:object forKey:_key];
+    if (object) [[_stack lastObject] setObject:object forKey:[_keys lastObject]];
+    [_keys removeLastObject];
 }
 
 - (void)addArrayObject:(id)object {

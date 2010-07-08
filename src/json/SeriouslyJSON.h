@@ -10,9 +10,9 @@
 
 
 @interface SeriouslyJSON : NSObject {
-    id _root;
+    id _currentObject;
     NSMutableArray *_stack;
-    NSString *_key;
+    NSMutableArray *_keys;
 }
 
 + (id)parse:(NSString *)string;
