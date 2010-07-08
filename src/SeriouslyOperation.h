@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Seriously.h"
+#import "SeriouslyConstants.h"
 
 @interface SeriouslyOperation : NSOperation {
     NSURLConnection *_connection;

@@ -18,33 +18,45 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 
 @implementation Seriously
 
-+ (SeriouslyOperation *)request:(id)url options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler {
++ (SeriouslyOperation *)request:(NSMutableURLRequest *)request options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler {
+    NSLog(@"(%@) %@", [request HTTPMethod], [request URL]);
+    
     NSMutableDictionary *options = [self options];
     [options addEntriesFromDictionary:userOptions];
     
     NSURLRequestCachePolicy cachePolicy = NSURLRequestUseProtocolCachePolicy;
     NSTimeInterval timeout = 60;    
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:nil cachePolicy:cachePolicy timeoutInterval:timeout];    
     
-    [urlRequest setHTTPMethod:[[options objectForKey:kSeriouslyMethod] uppercaseString]];
-    [urlRequest setTimeoutInterval:[[options objectForKey:kSeriouslyTimeout] doubleValue]];
-    [urlRequest setAllHTTPHeaderFields:[options objectForKey:kSeriouslyHeaders]];
-
-    if ([[urlRequest HTTPMethod] isEqual:@"POST"] || [[urlRequest HTTPMethod] isEqual:@"PUT"]) {
-        url = [SeriouslyUtils url:url params:nil];
-        [urlRequest setHTTPBody:[options objectForKey:kSeriouslyBody]];
-    }
-    else {
-        url = [SeriouslyUtils url:url params:[options objectForKey:kSeriouslyBody]];
+    [request setCachePolicy:cachePolicy];
+    [request setTimeoutInterval:timeout];
+    [request setHTTPMethod:[[options objectForKey:kSeriouslyMethod] uppercaseString]];
+    [request setTimeoutInterval:[[options objectForKey:kSeriouslyTimeout] doubleValue]];
+    [request setAllHTTPHeaderFields:[options objectForKey:kSeriouslyHeaders]];
+    
+    if ([[request HTTPMethod] isEqual:@"POST"] || [[request HTTPMethod] isEqual:@"PUT"]) {
+        [request setHTTPBody:[options objectForKey:kSeriouslyBody]];
     }
     
-    [urlRequest setURL:url];
-
     SeriouslyProgressHandler progressHandler = [options objectForKey:kSeriouslyProgressHandler];
     
-    SeriouslyOperation *operation = [SeriouslyOperation operationWithRequest:urlRequest handler:handler progressHandler:progressHandler];
+    SeriouslyOperation *operation = [SeriouslyOperation operationWithRequest:request handler:handler progressHandler:progressHandler];
     [[self operationQueue] addOperation:operation];
+
     return operation;
+}
+
++ (SeriouslyOperation *)requestURL:(id)url options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler {    
+    if ([url isKindOfClass:[NSString class]]) url = [NSURL URLWithString:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nil];    
+    if ([[request HTTPMethod] isEqual:@"POST"] || [[request HTTPMethod] isEqual:@"PUT"]) {
+        url = [SeriouslyUtils url:url params:nil];
+    }
+    else {
+        url = [SeriouslyUtils url:url params:[userOptions objectForKey:kSeriouslyBody]];
+    }
+    [request setURL:url];
+
+    return [self request:request options:userOptions handler:handler];
 }
 
 + (NSMutableDictionary *)options {
@@ -78,7 +90,7 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 + (SeriouslyOperation *)get:(id)url options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler {
     NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"GET", kSeriouslyMethod, nil];
     [options addEntriesFromDictionary:userOptions];    
-    return [self request:url options:options handler:handler];
+    return [self requestURL:url options:options handler:handler];
 }
 
 + (SeriouslyOperation *)post:(id)url handler:(SeriouslyHandler)handler {
@@ -88,7 +100,7 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 + (SeriouslyOperation *)post:(id)url options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler {
     NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"POST", kSeriouslyMethod, nil];
     [options addEntriesFromDictionary:userOptions];    
-    return [self request:url options:options handler:handler];
+    return [self requestURL:url options:options handler:handler];
 }
 
 + (SeriouslyOperation *)put:(id)url handler:(SeriouslyHandler)handler {
@@ -98,7 +110,7 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 + (SeriouslyOperation *)put:(id)url options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler {
     NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"PUT", kSeriouslyMethod, nil];
     [options addEntriesFromDictionary:userOptions];    
-    return [self request:url options:options handler:handler];
+    return [self requestURL:url options:options handler:handler];
 }
 
 + (SeriouslyOperation *)delete:(id)url handler:(SeriouslyHandler)handler {
@@ -108,7 +120,7 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 + (SeriouslyOperation *)delete:(id)url options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler {
     NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"DELETE", kSeriouslyMethod, nil];
     [options addEntriesFromDictionary:userOptions];    
-    return [self request:url options:options handler:handler];
+    return [self requestURL:url options:options handler:handler];
 }
 
 @end
