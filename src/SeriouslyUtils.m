@@ -12,12 +12,13 @@
 @implementation SeriouslyUtils
 
 + (NSURL *)url:(id)url params:(id)params {
-    if ([url isKindOfClass:[NSString class]]) url = [NSURL URLWithString:url];
     if (!params) {
-        return url;
+        return [url isKindOfClass:[NSString string]] ? [NSURL URLWithString:url] : url;
     }
     
-    NSString *urlString = [NSString stringWithFormat:@"%@?%@", [url absoluteString], params];    
+    NSString *urlString = [NSString stringWithFormat:@"%@?%@", url, [self formatQueryParams:params]];    
+    
+    NSLog(@"GOT IT %@", urlString);
     return [NSURL URLWithString:urlString];    
 }
 
