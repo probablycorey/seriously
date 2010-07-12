@@ -27,7 +27,7 @@
 
     NSMutableArray *pairs = [NSMutableArray array];
     for (id key in params) {
-        id value = [params objectForKey:key];
+        id value = [(NSDictionary *)params objectForKey:key];
         
         if ([value isKindOfClass:[NSArray class]]) { 
             for (id v in value) { 
@@ -42,10 +42,12 @@
     return [pairs componentsJoinedByString:@"&"]; 
 }
 
-+ (NSString *)escapeQueryParam:(NSString *)string {
++ (NSString *)escapeQueryParam:(id)param {
+    if (![param isKindOfClass:[NSString class]]) param = [NSString stringWithFormat:@"%@", param];
+    
 	CFStringRef escaped = CFURLCreateStringByAddingPercentEscapes(
         kCFAllocatorDefault,
-        (CFStringRef)string,
+        (CFStringRef)param,
         NULL,
         (CFStringRef)@":/?=,!$&'()*+;[]@#",
         CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));

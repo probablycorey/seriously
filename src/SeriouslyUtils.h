@@ -13,6 +13,6 @@
 
 + (NSURL *)url:(id)url params:(id)params;
 + (NSString *)formatQueryParams:(id)params;
-+ (NSString *)escapeQueryParam:(NSString *)string;
++ (NSString *)escapeQueryParam:(id)param;
 
 @end
