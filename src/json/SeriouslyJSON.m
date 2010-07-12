@@ -193,7 +193,7 @@ static yajl_callbacks callbacks = {
 }
 
 - (void)addDictionaryObject:(id)object {
-    if (object) [[_stack lastObject] setObject:object forKey:[_keys lastObject]];
+    if (object) [(NSMutableDictionary *)[_stack lastObject] setObject:object forKey:[_keys lastObject]];
     [_keys removeLastObject];
 }
 
