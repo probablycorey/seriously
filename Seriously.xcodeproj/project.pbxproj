@@ -35,10 +35,6 @@
 		87E24AEC11D952E600B9C33B /* Seriously.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E24AD111D952E600B9C33B /* Seriously.m */; };
 		87E24AED11D952E600B9C33B /* SeriouslyOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E24AD211D952E600B9C33B /* SeriouslyOperation.h */; };
 		87E24AEE11D952E600B9C33B /* SeriouslyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E24AD311D952E600B9C33B /* SeriouslyOperation.m */; };
-		87E24B5511D9566500B9C33B /* SeriouslyResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E24B5311D9566500B9C33B /* SeriouslyResponse.h */; };
-		87E24B5611D9566500B9C33B /* SeriouslyResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E24B5411D9566500B9C33B /* SeriouslyResponse.m */; };
-		87E5E0DD11DA75D100D334D5 /* SeriouslyUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E5E0DB11DA75D100D334D5 /* SeriouslyUtils.h */; };
-		87E5E0DE11DA75D100D334D5 /* SeriouslyUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E5E0DC11DA75D100D334D5 /* SeriouslyUtils.m */; };
 		AA747D9F0F9514B9006C5449 /* Seriously_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* Seriously_Prefix.pch */; };
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -72,11 +68,7 @@
 		87E24AD111D952E600B9C33B /* Seriously.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Seriously.m; sourceTree = "<group>"; };
 		87E24AD211D952E600B9C33B /* SeriouslyOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeriouslyOperation.h; sourceTree = "<group>"; };
 		87E24AD311D952E600B9C33B /* SeriouslyOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriouslyOperation.m; sourceTree = "<group>"; };
-		87E24B5311D9566500B9C33B /* SeriouslyResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeriouslyResponse.h; sourceTree = "<group>"; };
-		87E24B5411D9566500B9C33B /* SeriouslyResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriouslyResponse.m; sourceTree = "<group>"; };
 		87E24DFA11DA6B9C00B9C33B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		87E5E0DB11DA75D100D334D5 /* SeriouslyUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeriouslyUtils.h; sourceTree = "<group>"; };
-		87E5E0DC11DA75D100D334D5 /* SeriouslyUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriouslyUtils.m; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* Seriously_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Seriously_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libSeriously.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSeriously.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,12 +139,8 @@
 				87E24AD011D952E600B9C33B /* Seriously.h */,
 				87E24AD111D952E600B9C33B /* Seriously.m */,
 				8795190211E3E78300F95A6F /* SeriouslyConstants.h */,
-				87E24B5311D9566500B9C33B /* SeriouslyResponse.h */,
-				87E24B5411D9566500B9C33B /* SeriouslyResponse.m */,
 				87E24AD211D952E600B9C33B /* SeriouslyOperation.h */,
 				87E24AD311D952E600B9C33B /* SeriouslyOperation.m */,
-				87E5E0DB11DA75D100D334D5 /* SeriouslyUtils.h */,
-				87E5E0DC11DA75D100D334D5 /* SeriouslyUtils.m */,
 			);
 			name = Classes;
 			path = src;
@@ -225,8 +213,6 @@
 				87E24AE811D952E600B9C33B /* yajl_parser.h in Headers */,
 				87E24AEB11D952E600B9C33B /* Seriously.h in Headers */,
 				87E24AED11D952E600B9C33B /* SeriouslyOperation.h in Headers */,
-				87E24B5511D9566500B9C33B /* SeriouslyResponse.h in Headers */,
-				87E5E0DD11DA75D100D334D5 /* SeriouslyUtils.h in Headers */,
 				870E471711DBAB0C00248244 /* SeriouslyXML.h in Headers */,
 				8795190311E3E78300F95A6F /* SeriouslyConstants.h in Headers */,
 			);
@@ -285,8 +271,6 @@
 				87E24AE711D952E600B9C33B /* yajl_parser.c in Sources */,
 				87E24AEC11D952E600B9C33B /* Seriously.m in Sources */,
 				87E24AEE11D952E600B9C33B /* SeriouslyOperation.m in Sources */,
-				87E24B5611D9566500B9C33B /* SeriouslyResponse.m in Sources */,
-				87E5E0DE11DA75D100D334D5 /* SeriouslyUtils.m in Sources */,
 				870E471811DBAB0C00248244 /* SeriouslyXML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
