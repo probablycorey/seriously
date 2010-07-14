@@ -11,7 +11,7 @@
 #import "SeriouslyResponse.h"
 
 #define KVO_SET(_key_, _value_) [self willChangeValueForKey:@#_key_]; \
-_##_key_ = (_value_); \
+self._key_ = (_value_); \
 [self didChangeValueForKey:@#_key_]; 
 
 
@@ -62,7 +62,7 @@ _##_key_ = (_value_); \
 }
 
 - (void)start {
-    if (_isCanceled || _isFinished) return;
+    if (self.isCanceled || self.isFinished) return;
 
     if (![NSThread isMainThread]) {
         [self performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:NO];
@@ -77,18 +77,22 @@ _##_key_ = (_value_); \
 }
 
 - (void)cancel {
-    KVO_SET(isCanceled, YES);
-    KVO_SET(isFinished, YES);
-    KVO_SET(isExecuting, NO);
+    @synchronized(self) {
+        if (self.isCanceled) return; // Already canceled
 
-    [_connection cancel];	
-    [super cancel];
+        KVO_SET(isCanceled, YES);
+        KVO_SET(isFinished, YES);
+        KVO_SET(isExecuting, NO);
+
+        [_connection cancel];	
+        [super cancel];
+    }
     
     [self autorelease];
 }
 
 - (void)sendHandler:(NSURLConnection *)connection {
-    if (_isCanceled) [NSException raise:@"Seriously error" format:@"OH NO, THE URL CONNECTION WAS CANCELED BUT NOT CAUGHT"];
+    if (self.isCanceled) [NSException raise:@"Seriously error" format:@"OH NO, THE URL CONNECTION WAS CANCELED BUT NOT CAUGHT"];
     
     SeriouslyResponse *response = [[SeriouslyResponse alloc] initWithResponse:_response];
     response.rawBody = _data;
@@ -153,7 +157,7 @@ _##_key_ = (_value_); \
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    if (!_isCanceled) {
+    if (!self.isCanceled) {
         _error = [error retain];
         [_data release];
         _data = nil;
@@ -162,7 +166,7 @@ _##_key_ = (_value_); \
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {    
-    if (!_isCanceled) [self sendHandler:connection];
+    if (!self.isCanceled) [self sendHandler:connection];
 }
 
 @end
