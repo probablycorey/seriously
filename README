@@ -12,7 +12,8 @@ Simple Example
                      nil];
 
     for (NSString *url in urls) {
-        SeriouslyOperation *o = [Seriously request:url options:nil handler:^(SeriouslyResponse *response, NSError *error) {            
+        NSOperation *o = [Seriously request:url options:nil handler:^(id body,
+        NSHTTPURLResponse *response, NSError *error) {            
             NSLog(@"got %d (%@)", [urls indexOfObject:url], url);
         }];
     }
@@ -21,12 +22,12 @@ Parse JSON
 ----------
     NSString *url = @"http://api.twitter.com/1/users/show.json?screen_name=probablycorey";
 
-    [Seriously get:url handler:^(SeriouslyResponse *response, NSError *error) {
+    [Seriously get:url handler:^(id body, NSHTTPURLResposne *response, NSError *error) {
         if (error) {
             NSLog(@"Got error %@", error);
         }
         else {
             NSLog(@"Look, JSON gets parsed into an dictionary");
-            NSLog(@"%@", [response.body objectForKey:@"profile_background_image_url"]);
+            NSLog(@"%@", [body objectForKey:@"profile_background_image_url"]);
         }
     }];
