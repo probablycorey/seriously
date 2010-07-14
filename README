@@ -1,5 +1,19 @@
-Simple Example 
---------------
+Parse JSON 
+----------
+    NSString *url = @"http://api.twitter.com/1/users/show.json?screen_name=probablycorey";
+
+    [Seriously get:url handler:^(id body, NSHTTPURLResposne *response, NSError *error) {
+        if (error) {
+            NSLog(@"Got error %@", error);
+        }
+        else {
+            NSLog(@"Look, JSON gets parsed into an dictionary");
+            NSLog(@"%@", [body objectForKey:@"profile_background_image_url"]);
+        }
+    }];
+
+Simple Queue Example 
+--------------------
 
     NSArray *urls = [NSArray arrayWithObjects:
                      @"http://farm5.static.flickr.com/4138/4744205956_1f08ae40e3_o.jpg",
@@ -17,17 +31,4 @@ Simple Example
             NSLog(@"got %d (%@)", [urls indexOfObject:url], url);
         }];
     }
-    
-Parse JSON 
-----------
-    NSString *url = @"http://api.twitter.com/1/users/show.json?screen_name=probablycorey";
-
-    [Seriously get:url handler:^(id body, NSHTTPURLResposne *response, NSError *error) {
-        if (error) {
-            NSLog(@"Got error %@", error);
-        }
-        else {
-            NSLog(@"Look, JSON gets parsed into an dictionary");
-            NSLog(@"%@", [body objectForKey:@"profile_background_image_url"]);
-        }
-    }];
+ 
