@@ -8,7 +8,6 @@
 
 #import "Seriously.h"
 #import "SeriouslyOperation.h"
-#import "SeriouslyUtils.h"
 
 const NSString *kSeriouslyMethod = @"kSeriouslyMethod";
 const NSString *kSeriouslyTimeout = @"kSeriouslyTimeout";
@@ -49,10 +48,10 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
     if ([url isKindOfClass:[NSString class]]) url = [NSURL URLWithString:url];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nil];    
     if ([[request HTTPMethod] isEqual:@"POST"] || [[request HTTPMethod] isEqual:@"PUT"]) {
-        url = [SeriouslyUtils url:url params:nil];
+        url = [self url:url params:nil];
     }
     else {
-        url = [SeriouslyUtils url:url params:[userOptions objectForKey:kSeriouslyBody]];
+        url = [self url:url params:[userOptions objectForKey:kSeriouslyBody]];
     }
     [request setURL:url];
 
@@ -121,6 +120,52 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
     NSMutableDictionary *options = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"DELETE", kSeriouslyMethod, nil];
     [options addEntriesFromDictionary:userOptions];    
     return [self requestURL:url options:options handler:handler];
+}
+
+// Utility Methods
+// ---------------
++ (NSURL *)url:(id)url params:(id)params {
+    if (!params) {
+        return [url isKindOfClass:[NSString string]] ? [NSURL URLWithString:url] : url;
+    }
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@?%@", url, [self formatQueryParams:params]];    
+    
+    NSLog(@"GOT IT %@", urlString);
+    return [NSURL URLWithString:urlString];    
+}
+
++ (NSString *)formatQueryParams:(id)params {
+    if (![params isKindOfClass:[NSDictionary class]]) return params;
+    
+    NSMutableArray *pairs = [NSMutableArray array];
+    for (id key in params) {
+        id value = [(NSDictionary *)params objectForKey:key];
+        
+        if ([value isKindOfClass:[NSArray class]]) { 
+            for (id v in value) { 
+                [pairs addObject:[NSString stringWithFormat:@"%@[]=%@", key, [self escapeQueryParam:v]]];
+            } 
+        } 
+        else { 
+            [pairs addObject:[NSString stringWithFormat:@"%@=%@",key, [self escapeQueryParam:value]]]; 
+        }         
+    }
+    
+    return [pairs componentsJoinedByString:@"&"]; 
+}
+
++ (NSString *)escapeQueryParam:(id)param {
+    if (![param isKindOfClass:[NSString class]]) param = [NSString stringWithFormat:@"%@", param];
+    
+	CFStringRef escaped = CFURLCreateStringByAddingPercentEscapes(
+                                                                  kCFAllocatorDefault,
+                                                                  (CFStringRef)param,
+                                                                  NULL,
+                                                                  (CFStringRef)@":/?=,!$&'()*+;[]@#",
+                                                                  CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
+    
+    return [(NSString *)escaped autorelease];
 }
 
 @end

@@ -26,4 +26,10 @@
 + (SeriouslyOperation *)delete:(id)url handler:(SeriouslyHandler)handler;
 + (SeriouslyOperation *)delete:(id)url options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler;
 
+// Utility Methods
+// ---------------
++ (NSURL *)url:(id)url params:(id)params;
++ (NSString *)formatQueryParams:(id)params;
++ (NSString *)escapeQueryParam:(id)param;
+
 @end

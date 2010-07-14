@@ -8,7 +8,6 @@
 
 #import "SeriouslyOperation.h"
 #import "SeriouslyJSON.h"
-#import "SeriouslyResponse.h"
 
 #define KVO_SET(_key_, _value_) [self willChangeValueForKey:@#_key_]; \
 self._key_ = (_value_); \
@@ -93,16 +92,13 @@ self._key_ = (_value_); \
 
 - (void)sendHandler:(NSURLConnection *)connection {
     if (self.isCanceled) [NSException raise:@"Seriously error" format:@"OH NO, THE URL CONNECTION WAS CANCELED BUT NOT CAUGHT"];
-    
-    SeriouslyResponse *response = [[SeriouslyResponse alloc] initWithResponse:_response];
-    response.rawBody = _data;
-    response.body = [self parsedData];
-	
+
     KVO_SET(isExecuting, NO)
 	KVO_SET(isFinished, YES)
     
-    _handler(response, _error);
-    	
+    id body = [self parsedData];
+    _handler(body, _response, _error);
+
     [self autorelease];
 }
 

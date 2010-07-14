@@ -7,10 +7,9 @@
  *
  */
 
-@class SeriouslyResponse;
 @class SeriouslyOperation;
 
-typedef void(^SeriouslyHandler)(SeriouslyResponse *response, NSError *error);
+typedef void(^SeriouslyHandler)(id body, NSHTTPURLResponse *response, NSError *error);
 typedef void(^SeriouslyProgressHandler)(float progress, NSData *data);
 
 extern const NSString *kSeriouslyMethod;
