@@ -1,5 +1,17 @@
-Parse JSON 
-----------
+Seriously
+---------
+The iPhone needs a better way to make HTTP requests, specifically calls to 
+REST webservices. Seriously mixes Blocks with NSURLConnection & 
+NSOperationQueues to do just that. It also will automatically parse the JSON 
+response into a dictionary if the response headers are set correctly.
+
+Install
+-------
+Just drag the files in the "src" directory into your project. You can also try
+using the included "Seriously.framework" file
+
+Parse JSON EXAMPLE
+------------------
     NSString *url = @"http://api.twitter.com/1/users/show.json?screen_name=probablycorey";
 
     [Seriously get:url handler:^(id body, NSHTTPURLResposne *response, NSError *error) {
@@ -14,7 +26,6 @@ Parse JSON
 
 Simple Queue Example 
 --------------------
-
     NSArray *urls = [NSArray arrayWithObjects:
                      @"http://farm5.static.flickr.com/4138/4744205956_1f08ae40e3_o.jpg",
                      @"http://farm5.static.flickr.com/4123/4744238252_d11d0df5a3_b.jpg",
@@ -25,6 +36,7 @@ Simple Queue Example
                      @"http://farm5.static.flickr.com/4073/4744205142_be44e64ab7_o.jpg",
                      nil];
 
+    // By default the NSOperation will only do 3 requests at a time
     for (NSString *url in urls) {
         NSOperation *o = [Seriously request:url options:nil handler:^(id body,
         NSHTTPURLResponse *response, NSError *error) {            
@@ -32,3 +44,8 @@ Simple Queue Example
         }];
     }
  
+TODO
+----
+- Document
+- Add XML parsing
+- Add more options for NSOperationQueue management
