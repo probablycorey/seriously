@@ -1,13 +1,13 @@
 Seriously
 ---------
 The iPhone needs a better way to make HTTP requests, specifically calls to 
-REST webservices. Seriously mixes Blocks with NSURLConnection & 
-NSOperationQueues to do just that. It also will automatically parse the JSON 
+REST web services. Seriously mixes Blocks with NSURLConnection & 
+NSOperationQueue to do just that. It also will automatically parse the JSON 
 response into a dictionary if the response headers are set correctly.
 
 Install
 -------
-Just drag the files in the "src" directory into your project. You can also try
+Just drag the files from the "src" directory into your project. You can also try
 using the included "Seriously.framework" file
 
 Parse JSON EXAMPLE
@@ -43,6 +43,10 @@ Simple Queue Example
             NSLog(@"got %d (%@)", [urls indexOfObject:url], url);
         }];
     }
+ 
+Why Are You Using Blocks?
+-------------------------
+Welcome to the future dude!
  
 TODO
 ----
