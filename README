@@ -16,10 +16,10 @@ Parse JSON EXAMPLE
 
     [Seriously get:url handler:^(id body, NSHTTPURLResposne *response, NSError *error) {
         if (error) {
-            NSLog(@"Got error %@", error);
+            NSLog(@"Error: %@", error);
         }
         else {
-            NSLog(@"Look, JSON gets parsed into an dictionary");
+            NSLog(@"Look, JSON is parsed into a dictionary!");
             NSLog(@"%@", [body objectForKey:@"profile_background_image_url"]);
         }
     }];
