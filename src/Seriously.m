@@ -18,8 +18,6 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 @implementation Seriously
 
 + (SeriouslyOperation *)request:(NSMutableURLRequest *)request options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler {
-    NSLog(@"(%@) %@", [request HTTPMethod], [request URL]);
-    
     NSMutableDictionary *options = [self options];
     [options addEntriesFromDictionary:userOptions];
     
@@ -35,6 +33,8 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
     if ([[request HTTPMethod] isEqual:@"POST"] || [[request HTTPMethod] isEqual:@"PUT"]) {
         [request setHTTPBody:[options objectForKey:kSeriouslyBody]];
     }
+
+    NSLog(@"(%@) %@", [request HTTPMethod], [request URL]);
     
     SeriouslyProgressHandler progressHandler = [options objectForKey:kSeriouslyProgressHandler];
     
@@ -46,8 +46,9 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 
 + (SeriouslyOperation *)requestURL:(id)url options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler {    
     if ([url isKindOfClass:[NSString class]]) url = [NSURL URLWithString:url];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nil];    
-    if ([[request HTTPMethod] isEqual:@"POST"] || [[request HTTPMethod] isEqual:@"PUT"]) {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:nil];  
+    NSString *method = [[userOptions objectForKey:kSeriouslyMethod] uppercaseString];
+    if ([method isEqual:@"POST"] || [method isEqual:@"PUT"]) {
         url = [self url:url params:nil];
     }
     else {
