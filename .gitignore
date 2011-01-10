@@ -1,3 +1,5 @@
 build
 Seriously.xcodeproj/*.mode1v3
 Seriously.xcodeproj/*.pbxuser
+SeriouslyDemo/SeriouslyDemo.xcodeproj/*.mode1v3
+SeriouslyDemo/SeriouslyDemo.xcodeproj/*.pbxuser

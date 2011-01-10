@@ -1,0 +1,383 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* SeriouslyDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* SeriouslyDemoAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
+		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
+		562167DD12DB9EAD008102CC /* SeriouslyJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 562167BF12DB9EAD008102CC /* SeriouslyJSON.m */; };
+		562167DE12DB9EAD008102CC /* yajl.c in Sources */ = {isa = PBXBuildFile; fileRef = 562167C512DB9EAD008102CC /* yajl.c */; };
+		562167DF12DB9EAD008102CC /* yajl_alloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 562167C612DB9EAD008102CC /* yajl_alloc.c */; };
+		562167E012DB9EAD008102CC /* yajl_buf.c in Sources */ = {isa = PBXBuildFile; fileRef = 562167C812DB9EAD008102CC /* yajl_buf.c */; };
+		562167E112DB9EAD008102CC /* yajl_encode.c in Sources */ = {isa = PBXBuildFile; fileRef = 562167CC12DB9EAD008102CC /* yajl_encode.c */; };
+		562167E212DB9EAD008102CC /* yajl_gen.c in Sources */ = {isa = PBXBuildFile; fileRef = 562167CE12DB9EAD008102CC /* yajl_gen.c */; };
+		562167E312DB9EAD008102CC /* yajl_lex.c in Sources */ = {isa = PBXBuildFile; fileRef = 562167D012DB9EAD008102CC /* yajl_lex.c */; };
+		562167E412DB9EAD008102CC /* yajl_parser.c in Sources */ = {isa = PBXBuildFile; fileRef = 562167D312DB9EAD008102CC /* yajl_parser.c */; };
+		562167E512DB9EAD008102CC /* Seriously.m in Sources */ = {isa = PBXBuildFile; fileRef = 562167D612DB9EAD008102CC /* Seriously.m */; };
+		562167E612DB9EAD008102CC /* SeriouslyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 562167D912DB9EAD008102CC /* SeriouslyOperation.m */; };
+		562167E712DB9EAD008102CC /* SeriouslyXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 562167DC12DB9EAD008102CC /* SeriouslyXML.m */; };
+		562168D112DBAD5F008102CC /* Placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 562168D012DBAD5F008102CC /* Placeholder.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* SeriouslyDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeriouslyDemoAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* SeriouslyDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriouslyDemoAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* SeriouslyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeriouslyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28A0AAE50D9B0CCF005BE974 /* SeriouslyDemo_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeriouslyDemo_Prefix.pch; sourceTree = "<group>"; };
+		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28C286DF0D94DF7D0034E888 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		562167BE12DB9EAD008102CC /* SeriouslyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeriouslyJSON.h; sourceTree = "<group>"; };
+		562167BF12DB9EAD008102CC /* SeriouslyJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriouslyJSON.m; sourceTree = "<group>"; };
+		562167C212DB9EAD008102CC /* yajl_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_common.h; sourceTree = "<group>"; };
+		562167C312DB9EAD008102CC /* yajl_gen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_gen.h; sourceTree = "<group>"; };
+		562167C412DB9EAD008102CC /* yajl_parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_parse.h; sourceTree = "<group>"; };
+		562167C512DB9EAD008102CC /* yajl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yajl.c; sourceTree = "<group>"; };
+		562167C612DB9EAD008102CC /* yajl_alloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yajl_alloc.c; sourceTree = "<group>"; };
+		562167C712DB9EAD008102CC /* yajl_alloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_alloc.h; sourceTree = "<group>"; };
+		562167C812DB9EAD008102CC /* yajl_buf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yajl_buf.c; sourceTree = "<group>"; };
+		562167C912DB9EAD008102CC /* yajl_buf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_buf.h; sourceTree = "<group>"; };
+		562167CA12DB9EAD008102CC /* yajl_bytestack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_bytestack.h; sourceTree = "<group>"; };
+		562167CB12DB9EAD008102CC /* yajl_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_common.h; sourceTree = "<group>"; };
+		562167CC12DB9EAD008102CC /* yajl_encode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yajl_encode.c; sourceTree = "<group>"; };
+		562167CD12DB9EAD008102CC /* yajl_encode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_encode.h; sourceTree = "<group>"; };
+		562167CE12DB9EAD008102CC /* yajl_gen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yajl_gen.c; sourceTree = "<group>"; };
+		562167CF12DB9EAD008102CC /* yajl_gen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_gen.h; sourceTree = "<group>"; };
+		562167D012DB9EAD008102CC /* yajl_lex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yajl_lex.c; sourceTree = "<group>"; };
+		562167D112DB9EAD008102CC /* yajl_lex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_lex.h; sourceTree = "<group>"; };
+		562167D212DB9EAD008102CC /* yajl_parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_parse.h; sourceTree = "<group>"; };
+		562167D312DB9EAD008102CC /* yajl_parser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = yajl_parser.c; sourceTree = "<group>"; };
+		562167D412DB9EAD008102CC /* yajl_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = yajl_parser.h; sourceTree = "<group>"; };
+		562167D512DB9EAD008102CC /* Seriously.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Seriously.h; path = ../src/Seriously.h; sourceTree = SOURCE_ROOT; };
+		562167D612DB9EAD008102CC /* Seriously.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Seriously.m; path = ../src/Seriously.m; sourceTree = SOURCE_ROOT; };
+		562167D712DB9EAD008102CC /* SeriouslyConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SeriouslyConstants.h; path = ../src/SeriouslyConstants.h; sourceTree = SOURCE_ROOT; };
+		562167D812DB9EAD008102CC /* SeriouslyOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SeriouslyOperation.h; path = ../src/SeriouslyOperation.h; sourceTree = SOURCE_ROOT; };
+		562167D912DB9EAD008102CC /* SeriouslyOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SeriouslyOperation.m; path = ../src/SeriouslyOperation.m; sourceTree = SOURCE_ROOT; };
+		562167DB12DB9EAD008102CC /* SeriouslyXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeriouslyXML.h; sourceTree = "<group>"; };
+		562167DC12DB9EAD008102CC /* SeriouslyXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriouslyXML.m; sourceTree = "<group>"; };
+		562168D012DBAD5F008102CC /* Placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Placeholder.png; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* SeriouslyDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SeriouslyDemo-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				28C286DF0D94DF7D0034E888 /* RootViewController.h */,
+				28C286E00D94DF7D0034E888 /* RootViewController.m */,
+				1D3623240D0F684500981E51 /* SeriouslyDemoAppDelegate.h */,
+				1D3623250D0F684500981E51 /* SeriouslyDemoAppDelegate.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* SeriouslyDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				562167BC12DB9E8E008102CC /* Seriously */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				28A0AAE50D9B0CCF005BE974 /* SeriouslyDemo_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				562168D012DBAD5F008102CC /* Placeholder.png */,
+				28F335F01007B36200424DE2 /* RootViewController.xib */,
+				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* SeriouslyDemo-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		562167BC12DB9E8E008102CC /* Seriously */ = {
+			isa = PBXGroup;
+			children = (
+				562167BD12DB9EAD008102CC /* json */,
+				562167D512DB9EAD008102CC /* Seriously.h */,
+				562167D612DB9EAD008102CC /* Seriously.m */,
+				562167D712DB9EAD008102CC /* SeriouslyConstants.h */,
+				562167D812DB9EAD008102CC /* SeriouslyOperation.h */,
+				562167D912DB9EAD008102CC /* SeriouslyOperation.m */,
+				562167DA12DB9EAD008102CC /* xml */,
+			);
+			name = Seriously;
+			sourceTree = "<group>";
+		};
+		562167BD12DB9EAD008102CC /* json */ = {
+			isa = PBXGroup;
+			children = (
+				562167BE12DB9EAD008102CC /* SeriouslyJSON.h */,
+				562167BF12DB9EAD008102CC /* SeriouslyJSON.m */,
+				562167C012DB9EAD008102CC /* yajl */,
+			);
+			name = json;
+			path = ../src/json;
+			sourceTree = SOURCE_ROOT;
+		};
+		562167C012DB9EAD008102CC /* yajl */ = {
+			isa = PBXGroup;
+			children = (
+				562167C112DB9EAD008102CC /* api */,
+				562167C512DB9EAD008102CC /* yajl.c */,
+				562167C612DB9EAD008102CC /* yajl_alloc.c */,
+				562167C712DB9EAD008102CC /* yajl_alloc.h */,
+				562167C812DB9EAD008102CC /* yajl_buf.c */,
+				562167C912DB9EAD008102CC /* yajl_buf.h */,
+				562167CA12DB9EAD008102CC /* yajl_bytestack.h */,
+				562167CB12DB9EAD008102CC /* yajl_common.h */,
+				562167CC12DB9EAD008102CC /* yajl_encode.c */,
+				562167CD12DB9EAD008102CC /* yajl_encode.h */,
+				562167CE12DB9EAD008102CC /* yajl_gen.c */,
+				562167CF12DB9EAD008102CC /* yajl_gen.h */,
+				562167D012DB9EAD008102CC /* yajl_lex.c */,
+				562167D112DB9EAD008102CC /* yajl_lex.h */,
+				562167D212DB9EAD008102CC /* yajl_parse.h */,
+				562167D312DB9EAD008102CC /* yajl_parser.c */,
+				562167D412DB9EAD008102CC /* yajl_parser.h */,
+			);
+			path = yajl;
+			sourceTree = "<group>";
+		};
+		562167C112DB9EAD008102CC /* api */ = {
+			isa = PBXGroup;
+			children = (
+				562167C212DB9EAD008102CC /* yajl_common.h */,
+				562167C312DB9EAD008102CC /* yajl_gen.h */,
+				562167C412DB9EAD008102CC /* yajl_parse.h */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		562167DA12DB9EAD008102CC /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				562167DB12DB9EAD008102CC /* SeriouslyXML.h */,
+				562167DC12DB9EAD008102CC /* SeriouslyXML.m */,
+			);
+			name = xml;
+			path = ../src/xml;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* SeriouslyDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "SeriouslyDemo" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SeriouslyDemo;
+			productName = SeriouslyDemo;
+			productReference = 1D6058910D05DD3D006BFB54 /* SeriouslyDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SeriouslyDemo" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* SeriouslyDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
+				28F335F11007B36200424DE2 /* RootViewController.xib in Resources */,
+				562168D112DBAD5F008102CC /* Placeholder.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* SeriouslyDemoAppDelegate.m in Sources */,
+				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
+				562167DD12DB9EAD008102CC /* SeriouslyJSON.m in Sources */,
+				562167DE12DB9EAD008102CC /* yajl.c in Sources */,
+				562167DF12DB9EAD008102CC /* yajl_alloc.c in Sources */,
+				562167E012DB9EAD008102CC /* yajl_buf.c in Sources */,
+				562167E112DB9EAD008102CC /* yajl_encode.c in Sources */,
+				562167E212DB9EAD008102CC /* yajl_gen.c in Sources */,
+				562167E312DB9EAD008102CC /* yajl_lex.c in Sources */,
+				562167E412DB9EAD008102CC /* yajl_parser.c in Sources */,
+				562167E512DB9EAD008102CC /* Seriously.m in Sources */,
+				562167E612DB9EAD008102CC /* SeriouslyOperation.m in Sources */,
+				562167E712DB9EAD008102CC /* SeriouslyXML.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SeriouslyDemo_Prefix.pch;
+				INFOPLIST_FILE = "SeriouslyDemo-Info.plist";
+				PRODUCT_NAME = SeriouslyDemo;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SeriouslyDemo_Prefix.pch;
+				INFOPLIST_FILE = "SeriouslyDemo-Info.plist";
+				PRODUCT_NAME = SeriouslyDemo;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "SeriouslyDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SeriouslyDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
