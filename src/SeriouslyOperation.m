@@ -7,7 +7,6 @@
 //
 
 #import "SeriouslyOperation.h"
-#import "SeriouslyJSON.h"
 
 #define KVO_SET(_key_, _value_) [self willChangeValueForKey:@#_key_]; \
 self._key_ = (_value_); \
@@ -17,7 +16,6 @@ self._key_ = (_value_); \
 @interface SeriouslyOperation (Private)
 
 - (id)initWithRequest:(NSURLRequest *)urlRequest handler:(SeriouslyHandler)handler progressHandler:(SeriouslyProgressHandler)progressHandler;
-- (id)parsedData;
 
 @end
 
@@ -96,38 +94,9 @@ self._key_ = (_value_); \
     KVO_SET(isExecuting, NO)
 	KVO_SET(isFinished, YES)
     
-    id body = [self parsedData];
-    _handler(body, _response, _error);
+    _handler(_data, _response, _error);
 
     [self autorelease];
-}
-
-- (id)parsedData {
-    NSString *contentType = [[_response allHeaderFields] objectForKey:@"Content-Type"];
-
-    if ([contentType hasPrefix:@"application/json"] ||
-        [contentType hasPrefix:@"text/json"] ||
-        [contentType hasPrefix:@"application/javascript"] ||
-        [contentType hasPrefix:@"text/javascript"]) {
-        
-        NSString *text = [[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding];
-        id result = [SeriouslyJSON parse:text];
-        [text release];
-     
-        return result;
-    }
-    else if ([contentType hasPrefix:@"image/"] ||
-                 [contentType hasPrefix:@"audio/"] ||
-                 [contentType hasPrefix:@"application/octet-stream"]) {
-
-        return _data;
-    }
-    else {
-        NSString *text = [[[NSString alloc] initWithData:_data encoding:NSUTF8StringEncoding] autorelease];
-        return text;
-    }
-
-        
 }
 
 // NSURLConnection Delegate
