@@ -25,28 +25,28 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 56E3CBDA12DD0E3200D58587 /* Seriously.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = D2AAC07E0554694100DB518D /* libSeriously.a */;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = Seriously;
 		};
 		56E3CBE112DD0E3200D58587 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 56E3CBDA12DD0E3200D58587 /* Seriously.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 56E3CB9C12DD0D5C00D58587 /* libSeriouslyParser.a */;
+			remoteGlobalIDString = 56E3CB9C12DD0D5C00D58587;
 			remoteInfo = SeriouslyParser;
 		};
 		56E3CBE512DD0E4E00D58587 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 56E3CBDA12DD0E3200D58587 /* Seriously.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D /* Seriously */;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = Seriously;
 		};
 		56E3CBE712DD0E4E00D58587 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 56E3CBDA12DD0E3200D58587 /* Seriously.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = 56E3CB9B12DD0D5C00D58587 /* SeriouslyParser */;
+			remoteGlobalIDString = 56E3CB9B12DD0D5C00D58587;
 			remoteInfo = SeriouslyParser;
 		};
 /* End PBXContainerItemProxy section */
