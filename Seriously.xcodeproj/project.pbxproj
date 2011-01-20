@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56E1644512E88F9F00ACD472 /* SeriouslyOAuthOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 56E1644312E88F9F00ACD472 /* SeriouslyOAuthOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		56E1644612E88F9F00ACD472 /* SeriouslyOAuthOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 56E1644412E88F9F00ACD472 /* SeriouslyOAuthOperation.m */; };
 		56E3CBA012DD0D7C00D58587 /* Seriously_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* Seriously_Prefix.pch */; };
 		56E3CBA112DD0D7C00D58587 /* SeriouslyJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E24AB711D952E600B9C33B /* SeriouslyJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		56E3CBA212DD0D7C00D58587 /* yajl_common.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E24ABB11D952E600B9C33B /* yajl_common.h */; };
@@ -41,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		56E1644312E88F9F00ACD472 /* SeriouslyOAuthOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeriouslyOAuthOperation.h; sourceTree = "<group>"; };
+		56E1644412E88F9F00ACD472 /* SeriouslyOAuthOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriouslyOAuthOperation.m; sourceTree = "<group>"; };
 		56E3CB9C12DD0D5C00D58587 /* libSeriouslyParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSeriouslyParser.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		870E471511DBAB0C00248244 /* SeriouslyXML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeriouslyXML.h; sourceTree = "<group>"; };
 		870E471611DBAB0C00248244 /* SeriouslyXML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeriouslyXML.m; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 				8795190211E3E78300F95A6F /* SeriouslyConstants.h */,
 				87E24AD211D952E600B9C33B /* SeriouslyOperation.h */,
 				87E24AD311D952E600B9C33B /* SeriouslyOperation.m */,
+				56E1644312E88F9F00ACD472 /* SeriouslyOAuthOperation.h */,
+				56E1644412E88F9F00ACD472 /* SeriouslyOAuthOperation.m */,
 			);
 			name = Classes;
 			path = src;
@@ -241,6 +247,7 @@
 				87E24AEB11D952E600B9C33B /* Seriously.h in Headers */,
 				87E24AED11D952E600B9C33B /* SeriouslyOperation.h in Headers */,
 				8795190311E3E78300F95A6F /* SeriouslyConstants.h in Headers */,
+				56E1644512E88F9F00ACD472 /* SeriouslyOAuthOperation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +337,7 @@
 			files = (
 				87E24AEC11D952E600B9C33B /* Seriously.m in Sources */,
 				87E24AEE11D952E600B9C33B /* SeriouslyOperation.m in Sources */,
+				56E1644612E88F9F00ACD472 /* SeriouslyOAuthOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

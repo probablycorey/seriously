@@ -13,6 +13,7 @@
 }
 
 + (SeriouslyOperation *)request:(NSMutableURLRequest *)request options:(NSDictionary *)options handler:(SeriouslyHandler)handler;
++ (SeriouslyOAuthOperation *)oauthRequest:(NSMutableURLRequest *)request options:(NSDictionary *)options handler:(SeriouslyHandler)handler;
 + (SeriouslyOperation *)requestURL:(id)url options:(NSDictionary *)options handler:(SeriouslyHandler)handler;
 + (NSMutableDictionary *)options;
 + (NSOperationQueue *)operationQueue;
@@ -28,6 +29,7 @@
 
 // Utility Methods
 // ---------------
++ (void)prepareRequest:(NSMutableURLRequest *)request options:(NSDictionary *)options;
 + (NSURL *)url:(id)url params:(id)params;
 + (NSString *)formatQueryParams:(id)params;
 + (NSString *)escapeQueryParam:(id)param;

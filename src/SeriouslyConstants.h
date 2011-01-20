@@ -8,6 +8,7 @@
  */
 
 @class SeriouslyOperation;
+@class SeriouslyOAuthOperation;
 
 typedef void(^SeriouslyHandler)(id data, NSHTTPURLResponse *response, NSError *error);
 typedef void(^SeriouslyProgressHandler)(float progress, NSData *data);
