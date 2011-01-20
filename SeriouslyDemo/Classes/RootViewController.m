@@ -47,16 +47,16 @@
 	[super viewDidAppear:animated];
 	NSString *stringURL = @"http://api.twitter.com/1/statuses/public_timeline.json";
 	[Seriously get:stringURL handler:^(id data, NSHTTPURLResponse *response, NSError *error){
-	         if(error)
-	         {
-	                 NSLog (@"Error: %@", error);
-	                 return;
-			 }
-	         NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	         id jsonValue = [SeriouslyJSON parse:jsonString];
-	         self.tweets = jsonValue;
-	         [self.tableView reloadData];
-	 }];
+		if(error)
+		{
+			NSLog (@"Error: %@", error);
+			return;
+		}
+		NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		id jsonValue = [SeriouslyJSON parse:jsonString];
+		self.tweets = jsonValue;
+		[self.tableView reloadData];
+	}];
 }
 
 #pragma mark -
@@ -137,10 +137,10 @@
 		[self.images setValue:image forKey:userID];
 		NSString *url = [user objectForKey:@"profile_image_url"];
 		[Seriously get:url handler:^(id data, NSHTTPURLResponse *response, NSError *error){
-		         UIImage *anImage = [UIImage imageWithData:data];
-		         [self.images setValue:anImage forKey:userID];
-		         [self.tableView reloadData];
-		 }];
+			UIImage *anImage = [UIImage imageWithData:data];
+			[self.images setValue:anImage forKey:userID];
+			[self.tableView reloadData];
+		}];
 	}
 	return image;
 }
