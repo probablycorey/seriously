@@ -19,8 +19,21 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 @implementation Seriously
 
 + (SeriouslyOperation *)request:(NSMutableURLRequest *)request options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler {
+	NSMutableDictionary *options = [self options];
+    [options addEntriesFromDictionary:userOptions];
     
-	[self prepareRequest:request options:userOptions];
+    NSURLRequestCachePolicy cachePolicy = NSURLRequestUseProtocolCachePolicy;
+    NSTimeInterval timeout = 60;    
+    
+    [request setCachePolicy:cachePolicy];
+    [request setTimeoutInterval:timeout];
+    [request setHTTPMethod:[[options objectForKey:kSeriouslyMethod] uppercaseString]];
+    [request setTimeoutInterval:[[options objectForKey:kSeriouslyTimeout] doubleValue]];
+    [request setAllHTTPHeaderFields:[options objectForKey:kSeriouslyHeaders]];
+    
+    if ([[request HTTPMethod] isEqual:@"POST"] || [[request HTTPMethod] isEqual:@"PUT"]) {
+        [request setHTTPBody:[options objectForKey:kSeriouslyBody]];
+    }
 	
     NSLog(@"(%@) %@", [request HTTPMethod], [request URL]);
     
@@ -31,9 +44,7 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 }
 
 + (SeriouslyOAuthOperation *)oauthRequest:(NSMutableURLRequest *)request options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler{
-	
-	[self prepareRequest:request options:userOptions];
-	
+
     NSLog(@"(%@) %@", [request HTTPMethod], [request URL]);
     
     SeriouslyProgressHandler progressHandler = [userOptions objectForKey:kSeriouslyProgressHandler];
@@ -123,25 +134,6 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 
 // Utility Methods
 // ---------------
-+ (void)prepareRequest:(NSMutableURLRequest *)request options:(NSDictionary *)userOptions {
-	
-	NSMutableDictionary *options = [self options];
-    [options addEntriesFromDictionary:userOptions];
-    
-    NSURLRequestCachePolicy cachePolicy = NSURLRequestUseProtocolCachePolicy;
-    NSTimeInterval timeout = 60;    
-    
-    [request setCachePolicy:cachePolicy];
-    [request setTimeoutInterval:timeout];
-    [request setHTTPMethod:[[options objectForKey:kSeriouslyMethod] uppercaseString]];
-    [request setTimeoutInterval:[[options objectForKey:kSeriouslyTimeout] doubleValue]];
-    [request setAllHTTPHeaderFields:[options objectForKey:kSeriouslyHeaders]];
-    
-    if ([[request HTTPMethod] isEqual:@"POST"] || [[request HTTPMethod] isEqual:@"PUT"]) {
-        [request setHTTPBody:[options objectForKey:kSeriouslyBody]];
-    }
-}
-
 + (NSURL *)url:(id)url params:(id)params {
     if (!params) {
         return [url isKindOfClass:[NSString string]] ? [NSURL URLWithString:url] : url;

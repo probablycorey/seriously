@@ -29,7 +29,6 @@
 
 // Utility Methods
 // ---------------
-+ (void)prepareRequest:(NSMutableURLRequest *)request options:(NSDictionary *)options;
 + (NSURL *)url:(id)url params:(id)params;
 + (NSString *)formatQueryParams:(id)params;
 + (NSString *)escapeQueryParam:(id)param;
