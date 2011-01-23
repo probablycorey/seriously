@@ -35,6 +35,7 @@ self._key_ = (_value_); \
     [_response release];
     [_data release];
     [_error release];
+	[_urlRequest release];
     
     [super dealloc];
 }
