@@ -12,7 +12,7 @@ using the included "Seriously.framework" file
 
 Parse JSON EXAMPLE
 ------------------
-    NSString *url = @"http://api.twitter.com/1/users/show.json?screen_name=probablycorey;"
+    NSString *url = @"http://api.twitter.com/1/users/show.json?screen_name=probablycorey"
 
     [Seriously get:url handler:^(id body, NSHTTPURLResponse *response, NSError *error) {
         if (error) {
