@@ -43,7 +43,7 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
     return operation;
 }
 
-+ (SeriouslyOAuthOperation *)oauthRequest:(NSMutableURLRequest *)request options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler{
++ (SeriouslyOAuthOperation *)oauthRequest:(NSURLRequest *)request options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler{
 
     NSLog(@"(%@) %@", [request HTTPMethod], [request URL]);
     
