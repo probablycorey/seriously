@@ -54,6 +54,7 @@
 		}
 		NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		id jsonValue = [SeriouslyJSON parse:jsonString];
+        [jsonString release];
 		self.tweets = jsonValue;
 		[self.tableView reloadData];
 	}];
