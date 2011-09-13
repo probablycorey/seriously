@@ -21,22 +21,20 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 + (SeriouslyOperation *)request:(NSMutableURLRequest *)request options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler {
 	NSMutableDictionary *options = [self options];
     [options addEntriesFromDictionary:userOptions];
-    
+
     NSURLRequestCachePolicy cachePolicy = NSURLRequestUseProtocolCachePolicy;
     NSTimeInterval timeout = 60;    
-    
+
     [request setCachePolicy:cachePolicy];
     [request setTimeoutInterval:timeout];
     [request setHTTPMethod:[[options objectForKey:kSeriouslyMethod] uppercaseString]];
     [request setTimeoutInterval:[[options objectForKey:kSeriouslyTimeout] doubleValue]];
     [request setAllHTTPHeaderFields:[options objectForKey:kSeriouslyHeaders]];
-    
+
     if ([[request HTTPMethod] isEqual:@"POST"] || [[request HTTPMethod] isEqual:@"PUT"]) {
         [request setHTTPBody:[options objectForKey:kSeriouslyBody]];
     }
-	
-    NSLog(@"(%@) %@", [request HTTPMethod], [request URL]);
-    
+
     SeriouslyProgressHandler progressHandler = [userOptions objectForKey:kSeriouslyProgressHandler];
     SeriouslyOperation *operation = [SeriouslyOperation operationWithRequest:request handler:handler progressHandler:progressHandler];
     [[self operationQueue] addOperation:operation];
@@ -45,8 +43,6 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 
 + (SeriouslyOAuthOperation *)oauthRequest:(NSURLRequest *)request options:(NSDictionary *)userOptions handler:(SeriouslyHandler)handler{
 
-    NSLog(@"(%@) %@", [request HTTPMethod], [request URL]);
-    
     SeriouslyProgressHandler progressHandler = [userOptions objectForKey:kSeriouslyProgressHandler];
     SeriouslyOAuthOperation *operation = [SeriouslyOAuthOperation operationWithRequest:request handler:handler progressHandler:progressHandler];
     [[self operationQueue] addOperation:operation];
