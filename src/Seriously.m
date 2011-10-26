@@ -132,7 +132,7 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 // ---------------
 + (NSURL *)url:(id)url params:(id)params {
     if (!params) {
-        return [url isKindOfClass:[NSString string]] ? [NSURL URLWithString:url] : url;
+        return [url isKindOfClass:[NSString class]] ? [NSURL URLWithString:url] : url;
     }
     
     NSString *urlString = [NSString stringWithFormat:@"%@?%@", url, [self formatQueryParams:params]];    
