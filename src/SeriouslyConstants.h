@@ -17,3 +17,4 @@ extern const NSString *kSeriouslyTimeout;
 extern const NSString *kSeriouslyHeaders;
 extern const NSString *kSeriouslyBody;
 extern const NSString *kSeriouslyProgressHandler;
+extern const NSString *kSeriouslyPostDictionary;
