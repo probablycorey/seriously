@@ -14,6 +14,7 @@ const NSString *kSeriouslyTimeout = @"kSeriouslyTimeout";
 const NSString *kSeriouslyHeaders = @"kSeriouslyHeaders";
 const NSString *kSeriouslyBody = @"kSeriouslyBody";
 const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
+const NSString *kSeriouslyPostDictionary = @"kSeriouslyPostDictionary";
 
 @implementation Seriously
 
@@ -31,7 +32,13 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
     [request setAllHTTPHeaderFields:[options objectForKey:kSeriouslyHeaders]];
     
     if ([[request HTTPMethod] isEqual:@"POST"] || [[request HTTPMethod] isEqual:@"PUT"]) {
-        [request setHTTPBody:[options objectForKey:kSeriouslyBody]];
+		if([options objectForKey:kSeriouslyPostDictionary]){
+			NSString *charset = (NSString *)CFStringConvertEncodingToIANACharSetName(CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
+			[request setValue:[NSString stringWithFormat:@"application/x-www-form-urlencoded; charset=%@", charset] forHTTPHeaderField:@"Content-Type"];
+			[request setHTTPBody:[self buildURLEncodedPostBodyWithKeys:[options objectForKey:kSeriouslyPostDictionary]]];
+		} else {
+			[request setHTTPBody:[options objectForKey:kSeriouslyBody]];
+		}
     }
 
     NSLog(@"(%@) %@", [request HTTPMethod], [request URL]);
@@ -167,6 +174,22 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
                                                                   CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
     
     return [(NSString *)escaped autorelease];
+}
+
++ (NSData *)buildURLEncodedPostBodyWithKeys:(NSDictionary *)keys {
+	NSMutableData *postBody = [NSMutableData data];
+	
+	__block NSUInteger i = 0;
+	NSUInteger count = [keys count] - 1;
+	[keys enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+		NSString *data = [NSString stringWithFormat:@"%@=%@%@", [self escapeQueryParam:key], [self escapeQueryParam:obj], (i < count) ?  @"&" : @""];
+		[postBody appendData:[data dataUsingEncoding:NSUTF8StringEncoding]];
+		i++;
+	}];
+	
+	NSLog(@"Generated POST Body: %@", [[[NSString alloc] initWithData:postBody encoding:NSUTF8StringEncoding] autorelease]);
+	
+	return [NSData dataWithData:postBody];
 }
 
 @end
