@@ -136,7 +136,7 @@ self._key_ = (_value_); \
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if (response != _response) {
         [_response release];
-        _response = [response retain];
+        _response = (NSHTTPURLResponse *)[response retain];
     }
 }
 
