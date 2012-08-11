@@ -15,6 +15,7 @@ const NSString *kSeriouslyTimeout = @"kSeriouslyTimeout";
 const NSString *kSeriouslyHeaders = @"kSeriouslyHeaders";
 const NSString *kSeriouslyBody = @"kSeriouslyBody";
 const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
+const NSString *kSeriouslyCachePolicy = @"kSeriouslyCachePolicy";
 
 @implementation Seriously
 
@@ -22,9 +23,7 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 	NSMutableDictionary *options = [self options];
     [options addEntriesFromDictionary:userOptions];
 
-    NSURLRequestCachePolicy cachePolicy = NSURLRequestUseProtocolCachePolicy;
-
-    [request setCachePolicy:cachePolicy];
+    [request setCachePolicy:[[options objectForKey:kSeriouslyCachePolicy] intValue]];
     [request setHTTPMethod:[[options objectForKey:kSeriouslyMethod] uppercaseString]];
     [request setTimeoutInterval:[[options objectForKey:kSeriouslyTimeout] doubleValue]];
     [request setAllHTTPHeaderFields:[options objectForKey:kSeriouslyHeaders]];
@@ -65,10 +64,12 @@ const NSString *kSeriouslyProgressHandler = @"kSeriouslyProgressHandler";
 + (NSMutableDictionary *)options {
     static NSString *method = @"GET";
     static NSTimeInterval timeout = 60;
+    static NSURLRequestCachePolicy cachePolicy = NSURLRequestUseProtocolCachePolicy;
     
     return [NSMutableDictionary dictionaryWithObjectsAndKeys:
             method, kSeriouslyMethod,
             [NSNumber numberWithInt:timeout], kSeriouslyTimeout,
+            [NSNumber numberWithInt:cachePolicy], kSeriouslyCachePolicy,
             nil];
 }
 
