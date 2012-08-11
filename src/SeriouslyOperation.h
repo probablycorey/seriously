@@ -21,12 +21,12 @@
     
     BOOL _isFinished;
     BOOL _isExecuting;
-    BOOL _isCanceled;    
+    BOOL _isCancelled;
 }
 
 @property () BOOL isFinished;
 @property () BOOL isExecuting;
-@property () BOOL isCanceled;
+@property () BOOL isCancelled;
 
 + (id)operationWithRequest:(NSURLRequest *)urlRequest handler:(SeriouslyHandler)handler progressHandler:(SeriouslyProgressHandler)progressHandler;
 

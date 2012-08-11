@@ -24,7 +24,7 @@ self._key_ = (_value_); \
 
 @synthesize isFinished = _isFinished;
 @synthesize isExecuting = _isExecuting;
-@synthesize isCanceled = _isCanceled; 
+@synthesize isCancelled = _isCancelled;
 
 - (void)dealloc {
     [_connection release];
@@ -51,7 +51,7 @@ self._key_ = (_value_); \
     _data = [[NSMutableData alloc] init];
     
     _isFinished = NO;
-    _isCanceled = NO;
+    _isCancelled = NO;
     _isExecuting = NO;
     
     _urlRequest = [urlRequest retain];
@@ -60,7 +60,7 @@ self._key_ = (_value_); \
 }
 
 - (void)start {
-    if (self.isCanceled || self.isFinished) return;
+    if (self.isCancelled || self.isFinished) return;
 
     if (![NSThread isMainThread]) {
         [self performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:NO];
@@ -76,9 +76,9 @@ self._key_ = (_value_); \
 
 - (void)cancel {
     @synchronized(self) {
-        if (self.isCanceled) return; // Already canceled
+        if (self.isCancelled) return; // Already canceled
 
-        KVO_SET(isCanceled, YES);
+        KVO_SET(isCancelled, YES);
         KVO_SET(isFinished, YES);
         KVO_SET(isExecuting, NO);
 
@@ -90,7 +90,7 @@ self._key_ = (_value_); \
 }
 
 - (void)sendHandler:(NSURLConnection *)connection {
-    if (self.isCanceled) [NSException raise:@"Seriously error" format:@"OH NO, THE URL CONNECTION WAS CANCELED BUT NOT CAUGHT"];
+    if (self.isCancelled) [NSException raise:@"Seriously error" format:@"OH NO, THE URL CONNECTION WAS CANCELED BUT NOT CAUGHT"];
 
     KVO_SET(isExecuting, NO)
 	KVO_SET(isFinished, YES)
@@ -123,7 +123,7 @@ self._key_ = (_value_); \
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    if (!self.isCanceled) {
+    if (!self.isCancelled) {
         _error = [error retain];
         [_data release];
         _data = nil;
@@ -132,7 +132,7 @@ self._key_ = (_value_); \
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {    
-    if (!self.isCanceled) [self sendHandler:connection];
+    if (!self.isCancelled) [self sendHandler:connection];
 }
 
 @end
