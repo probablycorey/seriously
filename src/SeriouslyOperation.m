@@ -138,6 +138,9 @@ self._key_ = (_value_); \
         [_response release];
         _response = (NSHTTPURLResponse *)[response retain];
     }
+	
+	_startDate = [NSDate timeIntervalSinceReferenceDate];
+	_totalSize = [response expectedContentLength];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
@@ -148,8 +151,16 @@ self._key_ = (_value_); \
     [_data appendData:data];
     
     if (_progressHandler) {
-        float percentComplete = _data.length / [[[_response allHeaderFields] objectForKey:@"Content-Length"] floatValue];
-        _progressHandler(percentComplete, _data);
+		double speedInBytes = [_data length] / ([NSDate timeIntervalSinceReferenceDate] - _startDate);
+		double sizeRemaining = _totalSize - [_data length];
+		NSTimeInterval secondsRemaining = sizeRemaining / speedInBytes;
+		
+		//NSLog(@"%.2f MB", speed * 0.000000953674);
+		//NSLog(@"%.2f remaining", sizeRemaining / speed);
+		
+        float percentComplete = _data.length / _totalSize;
+		
+        _progressHandler(percentComplete, speedInBytes, secondsRemaining, _data);
     }
 }
 
@@ -160,10 +171,16 @@ self._key_ = (_value_); \
         _data = nil;
         [self sendHandler:connection];
     }
+	
+	_startDate = 0.0;
+	_totalSize = 0.0;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {    
     if (!self.isCanceled) [self sendHandler:connection];
+	
+	_startDate = 0.0;
+	_totalSize = 0.0;
 }
 
 @end

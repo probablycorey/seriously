@@ -10,7 +10,7 @@
 @class SeriouslyOperation;
 
 typedef void(^SeriouslyHandler)(id body, NSHTTPURLResponse *response, NSError *error);
-typedef void(^SeriouslyProgressHandler)(float progress, NSData *data);
+typedef void(^SeriouslyProgressHandler)(float progress, double downloadSpeed, NSTimeInterval secondsRemaining, NSData *data);
 
 extern const NSString *kSeriouslyMethod;
 extern const NSString *kSeriouslyTimeout;
