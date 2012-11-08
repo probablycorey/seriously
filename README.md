@@ -1,3 +1,9 @@
+Looking for New Maintainer
+--------------------------
+I'm no longer doing iOS development, so I am not using seriously anymore. If
+you would like to take over as maintainer of seriously let me know!
+
+
 Seriously
 ---------
 The iPhone needs a better way to make HTTP requests, specifically calls to 
