@@ -9,12 +9,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RootViewController : UITableViewController {
-	NSArray *tweets;
-	NSDictionary *images;
-}
-
-@property (nonatomic, retain) NSArray *tweets;
-@property (nonatomic, retain) NSDictionary *images;
+@interface RootViewController : UITableViewController
 
 @end

@@ -21,18 +21,23 @@
 #import "Seriously.h"
 #import "SeriouslyJSON.h"
 
-@interface RootViewController (Private)
+#error You must create a client at http://instagram.com/developer/clients/manage/ and fill the client id in below
+#define CLIENT_ID @"your-client-id"
 
-- (NSDictionary *)tweetForRowAtIndexPath:(NSIndexPath *)indexPath;
-- (NSString *)textForTweetAtIndexPath:(NSIndexPath *)indexPath;
-- (NSString *)imageURLForTweetAtIndexPath:(NSIndexPath *)indexPath;
-- (UIImage *)imageForTweetAtIndexPath:(NSIndexPath *)indexPath;
+@interface RootViewController ()
+
+- (NSDictionary *)postForRowAtIndexPath:(NSIndexPath *)indexPath;
+- (NSString *)textForPostAtIndexPath:(NSIndexPath *)indexPath;
+- (UIImage *)imageForPostAtIndexPath:(NSIndexPath *)indexPath;
+
+@property (nonatomic, retain) NSArray *posts;
+@property (nonatomic, retain) NSDictionary *images;
 
 @end
 
 @implementation RootViewController
 
-@synthesize tweets, images;
+@synthesize posts, images;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -45,8 +50,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	NSString *stringURL = @"http://api.twitter.com/1/statuses/public_timeline.json";
-	[Seriously get:stringURL handler:^(id data, NSHTTPURLResponse *response, NSError *error){
+	NSString *stringURL = [NSString stringWithFormat:@"https://api.instagram.com/v1/media/popular?client_id=%@", CLIENT_ID];
+	[Seriously get:stringURL handler:^(id data, NSHTTPURLResponse *response, NSError *error)
+    {
 		if(error)
 		{
 			NSLog (@"Error: %@", error);
@@ -55,7 +61,7 @@
 		NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		id jsonValue = [SeriouslyJSON parse:jsonString];
         [jsonString release];
-		self.tweets = jsonValue;
+		self.posts = [jsonValue objectForKey:@"data"];
 		[self.tableView reloadData];
 	}];
 }
@@ -72,7 +78,7 @@
 /* Customize the number of rows in the table view. */
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return self.tweets == nil ? 0 : [self.tweets count];
+	return self.posts == nil ? 0 : [self.posts count];
 }
 
 /* Customize the appearance of table view cells. */
@@ -88,16 +94,16 @@
 		cell.textLabel.font = [UIFont systemFontOfSize:14];
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	}
-	NSString *text = [self textForTweetAtIndexPath:indexPath];
+	NSString *text = [self textForPostAtIndexPath:indexPath];
 	cell.textLabel.text = text;
-	cell.imageView.image = [self imageForTweetAtIndexPath:indexPath];
+	cell.imageView.image = [self imageForPostAtIndexPath:indexPath];
 	return cell;
 }
 
 /* Return the custom height of the cell based on the content that will be displayed */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *text = [self textForTweetAtIndexPath:indexPath];
+	NSString *text = [self textForPostAtIndexPath:indexPath];
 	UIFont *font = [UIFont systemFontOfSize:14 ];
 	CGSize withinSize = CGSizeMake( 350, 150);
 	CGSize size = [text sizeWithFont:font constrainedToSize:withinSize lineBreakMode:UILineBreakModeWordWrap];
@@ -105,38 +111,31 @@
 	return textHeight;
 }
 
-- (NSDictionary *)tweetForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSDictionary *)postForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSDictionary *tweet = [tweets objectAtIndex:indexPath.row];
-	return tweet;
+	NSDictionary *post = [self.posts objectAtIndex:indexPath.row];
+	return post;
 }
 
-- (NSString *)textForTweetAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)textForPostAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSDictionary *tweet = [self tweetForRowAtIndexPath:indexPath];
-	NSString *text = [tweet objectForKey:@"text"];
-	return text;
+	NSDictionary *post = [self postForRowAtIndexPath:indexPath];
+	NSDictionary *user = [post objectForKey:@"user"];
+    NSString *postText = [user objectForKey:@"username"];
+	return postText;
 }
 
-- (NSString *)imageURLForTweetAtIndexPath:(NSIndexPath *)indexPath
+- (UIImage *)imageForPostAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSDictionary *tweet = [self tweetForRowAtIndexPath:indexPath];
-	NSDictionary *user = [tweet objectForKey:@"user"];
-	NSString *url = [user objectForKey:@"profile_image_url"];
-	return url;
-}
-
-- (UIImage *)imageForTweetAtIndexPath:(NSIndexPath *)indexPath
-{
-	NSDictionary *tweet = [self tweetForRowAtIndexPath:indexPath];
-	NSDictionary *user = [tweet objectForKey:@"user"];
-	NSString *userID = [user objectForKey:@"id_str"];
+	NSDictionary *post = [self postForRowAtIndexPath:indexPath];
+	NSDictionary *user = [post objectForKey:@"user"];
+	NSString *userID = [user objectForKey:@"id"];
 	UIImage *image = [self.images objectForKey:userID];
 	if(!image)
 	{
 		image = [UIImage imageNamed:@"Placeholder.png"];
 		[self.images setValue:image forKey:userID];
-		NSString *url = [user objectForKey:@"profile_image_url"];
+		NSString *url = [user objectForKey:@"profile_picture"];
 		[Seriously get:url handler:^(id data, NSHTTPURLResponse *response, NSError *error){
 			UIImage *anImage = [UIImage imageWithData:data];
 			[self.images setValue:anImage forKey:userID];
