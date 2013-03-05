@@ -32,5 +32,6 @@
 + (NSURL *)url:(id)url params:(id)params;
 + (NSString *)formatQueryParams:(id)params;
 + (NSString *)escapeQueryParam:(id)param;
++ (NSData *)buildURLEncodedPostBodyWithKeys:(NSDictionary *)keys;
 
 @end

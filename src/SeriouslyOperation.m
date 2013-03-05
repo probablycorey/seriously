@@ -91,10 +91,9 @@ self._key_ = (_value_); \
 
 - (void)sendHandler:(NSURLConnection *)connection {
     if (self.isCancelled) [NSException raise:@"Seriously error" format:@"OH NO, THE URL CONNECTION WAS CANCELED BUT NOT CAUGHT"];
-
-    KVO_SET(isExecuting, NO)
-	KVO_SET(isFinished, YES)
     
+    KVO_SET(isExecuting, NO)
+    KVO_SET(isFinished, YES)
     _handler(_data, _response, _error);
 
     [self autorelease];
@@ -105,8 +104,10 @@ self._key_ = (_value_); \
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     if (response != _response) {
         [_response release];
-        _response = (NSHTTPURLResponse *) [response retain];
+        _response = (NSHTTPURLResponse *)[response retain];
     }
+	_startDate = [NSDate timeIntervalSinceReferenceDate];
+	_totalSize = [response expectedContentLength];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
@@ -115,10 +116,12 @@ self._key_ = (_value_); \
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
     [_data appendData:data];
-    
     if (_progressHandler) {
-        float percentComplete = _data.length / [[[_response allHeaderFields] objectForKey:@"Content-Length"] floatValue];
-        _progressHandler(percentComplete, _data);
+      double speedInBytes = [_data length] / ([NSDate timeIntervalSinceReferenceDate] - _startDate);
+      double sizeRemaining = _totalSize - [_data length];
+      NSTimeInterval secondsRemaining = sizeRemaining / speedInBytes;
+      float percentComplete = _data.length / _totalSize;
+      _progressHandler(percentComplete, speedInBytes, secondsRemaining, _data);
     }
 }
 
@@ -129,10 +132,14 @@ self._key_ = (_value_); \
         _data = nil;
         [self sendHandler:connection];
     }
+	  _startDate = 0.0;
+	  _totalSize = 0.0;
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {    
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     if (!self.isCancelled) [self sendHandler:connection];
+    _startDate = 0.0;
+    _totalSize = 0.0;
 }
 
 @end

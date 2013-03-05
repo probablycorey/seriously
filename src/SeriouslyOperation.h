@@ -22,6 +22,8 @@
     BOOL _isFinished;
     BOOL _isExecuting;
     BOOL _isCancelled;
+    NSTimeInterval _startDate;
+    double _totalSize;
 }
 
 @property () BOOL isFinished;

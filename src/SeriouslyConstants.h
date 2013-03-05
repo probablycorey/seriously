@@ -11,7 +11,7 @@
 @class SeriouslyOAuthOperation;
 
 typedef void(^SeriouslyHandler)(id data, NSHTTPURLResponse *response, NSError *error);
-typedef void(^SeriouslyProgressHandler)(float progress, NSData *data);
+typedef void(^SeriouslyProgressHandler)(float progress, double downloadSpeed, NSTimeInterval secondsRemaining, NSData *data);
 
 extern const NSString *kSeriouslyMethod;
 extern const NSString *kSeriouslyTimeout;
@@ -19,3 +19,4 @@ extern const NSString *kSeriouslyHeaders;
 extern const NSString *kSeriouslyBody;
 extern const NSString *kSeriouslyProgressHandler;
 extern const NSString *kSeriouslyCachePolicy;
+extern const NSString *kSeriouslyPostDictionary;
