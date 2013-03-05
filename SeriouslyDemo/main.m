@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SeriouslyDemoAppDelegate.h"
 
 int main(int argc, char *argv[]) {
-    
-    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    int retVal = UIApplicationMain(argc, argv, nil, nil);
-    [pool release];
-    return retVal;
+    @autoreleasepool {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([SeriouslyDemoAppDelegate class]));
+    }
 }

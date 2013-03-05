@@ -60,7 +60,6 @@
 		}
 		NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		id jsonValue = [SeriouslyJSON parse:jsonString];
-        [jsonString release];
 		self.posts = [jsonValue objectForKey:@"data"];
 		[self.tableView reloadData];
 	}];
@@ -89,7 +88,7 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if(cell == nil)
 	{
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
 		cell.textLabel.numberOfLines = 0;
 		cell.textLabel.font = [UIFont systemFontOfSize:14];
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -143,24 +142,6 @@
 		}];
 	}
 	return image;
-}
-
-#pragma mark -
-#pragma mark Memory management
-
-- (void)didReceiveMemoryWarning
-{
-	/* Releases the view if it doesn't have a superview. */
-	[super didReceiveMemoryWarning];
-
-	/* Relinquish ownership any cached data, images, etc that aren't in use. */
-}
-
-- (void)dealloc
-{
-	[tweets release];
-	[images release];
-	[super dealloc];
 }
 
 @end
